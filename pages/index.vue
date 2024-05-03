@@ -12,6 +12,9 @@
       <NuxtLink :to="{ path: '/section/activeweeks' }">
         <button>set active weeks</button>
       </NuxtLink>
+      <NuxtLink :to="{ path: '/team/create' }">
+        <button>create team</button>
+      </NuxtLink>
     </div>
 </template>
 <style>
