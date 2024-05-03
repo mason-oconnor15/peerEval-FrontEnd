@@ -34,7 +34,7 @@
   
   <script>
   import axios from "axios";
-  import ErrorMessage from '../section/ErrorMessage.vue'
+  import ErrorMessage from '../ErrorMessage.vue'
   
   export default {
     components: {
