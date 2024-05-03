@@ -6,6 +6,9 @@
         <NuxtLink :to="{ path: '/student/create' }">
             <button>create student</button>
         </NuxtLink>
+      <NuxtLink :to="{ path: '/student/peereval/submitpeereval' }">
+        <button>Submit Peer Evaluation Form</button>
+      </NuxtLink>
         <NuxtLink :to="{ path: '/student/search' }">
             <button>find student</button>
         </NuxtLink>
