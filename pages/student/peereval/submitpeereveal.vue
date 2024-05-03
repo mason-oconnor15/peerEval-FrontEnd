@@ -2,5 +2,5 @@
 import peereval from '../../../components/student/peereval.vue';
 </script>
 <template>
-  <peereveal/>
+  <peereval/>
 </template>
