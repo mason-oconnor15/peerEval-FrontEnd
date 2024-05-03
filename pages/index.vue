@@ -24,6 +24,9 @@
       <NuxtLink :to="{ path: '/section/search/searchSectionsPage' }">
         <button>Find a Section</button>
       </NuxtLink>
+      <NuxtLink :to="{ path: '/rubric/create/createRubricPage' }">
+        <button>Create a Rubric</button>
+      </NuxtLink>
     </div>
 </template>
 <style>
