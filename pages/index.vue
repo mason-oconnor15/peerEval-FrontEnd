@@ -15,6 +15,9 @@
       <NuxtLink :to="{ path: '/instructor/instracc' }">
         <button>Setup Instructor account</button>
       </NuxtLink>
+      <NuxtLink :to="{ path: '/team/create' }">
+        <button>create team</button>
+      </NuxtLink>
     </div>
 </template>
 <style>
