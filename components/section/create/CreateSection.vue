@@ -34,7 +34,7 @@
   
   <script>
   import axios from "axios";
-  import ErrorMessage from '../section/ErrorMessage.vue'
+  import ErrorMessage from '../ErrorMessage.vue'
   
   export default {
     components: {
@@ -43,7 +43,7 @@
     data() {
       return {
         enableBack: true,
-        showWarning: false, //warnin message is initally not visible
+        showWarning: false, //warning message is initally not visible
         initialSectionName: '',
         initialAcademicYear: '',
         initialFirstAndLastDate: '',
