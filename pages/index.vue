@@ -9,6 +9,9 @@
         <NuxtLink :to="{ path: '/student/search' }">
             <button>find student</button>
         </NuxtLink>
+      <NuxtLink :to="{ path: '/section/activeweeks' }">
+        <button>set active weeks</button>
+      </NuxtLink>
     </div>
 </template>
 <style>
