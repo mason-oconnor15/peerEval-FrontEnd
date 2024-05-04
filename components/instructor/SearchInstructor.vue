@@ -18,7 +18,7 @@
       <label>Status </label>
       <input v-model="searchCriteria.status" type="radio" name="status" value="IS_ACTIVE" />Active
       <input v-model="searchCriteria.status" type="radio" name="status" value="IS_DEACTIVATED" />Deactivated
-      <input v-model="searchCriteria.status" type="radio" name="status" value="Any" />Any
+      <input v-model="searchCriteria.status" type="radio" name="status" value="" />Any
     </div>
 
 
@@ -38,7 +38,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="instructor in this.searchResults.data" :key="instructor.instructorId">
+        <tr v-for="instructor in this.searchResults" :key="instructor.instructorId">
           <td>{{instructor.name}}</td>
           <td>{{instructor.academicYear}}</td>
           <td>{{instructor.teamNames}}</td>
@@ -55,6 +55,8 @@
 </template>
 
 <script>
+  import axios from "axios";
+
   export default {
     data(){
       return {
@@ -67,27 +69,33 @@
           status: '',
         },
 
+        paging:{
+          page: 0,
+          size: 1,
+          sort: 'name,asc',
+        },
+
         showResults: false,
         searchResults: {
-          flag: true,
-          code: 200,
-          message: 'Search Success',
-          data: [
-            {
-              instructorId: '1',
-              name: 'alvie',
-              academicYear: 2024,
-              status: 'IS_ACTIVE',
-              teamNames: null,
-            },
-            {
-              instructorId: '2',
-              name: 'ana',
-              academicYear: 2024,
-              status: 'IS_ACTIVE',
-              teamNames: null,
-            }
-          ]
+          // flag: true,
+          // code: 200,
+          // message: 'Search Success',
+          // data: [
+          //   {
+          //     instructorId: '1',
+          //     name: 'alvie',
+          //     academicYear: 2024,
+          //     status: 'IS_ACTIVE',
+          //     teamNames: null,
+          //   },
+          //   {
+          //     instructorId: '2',
+          //     name: 'ana',
+          //     academicYear: 2024,
+          //     status: 'IS_ACTIVE',
+          //     teamNames: null,
+          //   }
+          // ]
         }
       }
     },
@@ -103,7 +111,14 @@
       },
 
       searchWithCriteria: function(){
-        console.log(this.searchCriteria);
+        axios.post("http://localhost:8080/peereval/instructors/search", this.searchCriteria, this.paging)
+            .then((response) => {
+              console.log(response.data.data.content);
+              this.searchResults = response.data.data.content;
+            })
+            .catch(error => {
+              console.log(error);
+            })
         this.showSearchOptions = false;
         this.showResults = true;
       }
