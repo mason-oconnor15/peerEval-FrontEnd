@@ -30,6 +30,15 @@
       <NuxtLink :to="{ path: '/rubric/create/createRubricPage' }">
         <button>Create a Rubric</button>
       </NuxtLink>
+
+
+      <NuxtLink :to="{ path: '/instructor/invite' }">
+        <button>Invite instructors</button>
+      </NuxtLink>
+
+      <NuxtLink :to="{ path: '/instructor/search' }">
+        <button>Search For Instructors</button>
+      </NuxtLink>
     </div>
 </template>
 <style>
