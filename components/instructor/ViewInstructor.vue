@@ -31,8 +31,6 @@
           teamName: '',
           status: '',
         },
-        //
-        // nothing: this.fetchInstructorData(),
 
         fetchDataCall: this.fetchInstructorData(),
       };
@@ -50,8 +48,6 @@
         const instructorId = this.getInstructorId();
         axios.get("http://localhost:8080/peereval/instructors/"+instructorId)
             .then(response => {
-              // console.log(response.data.data);
-              // return response.data.data;
               this.instructor = response.data.data;
             })
             .catch(error => {
