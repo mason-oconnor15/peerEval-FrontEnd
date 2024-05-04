@@ -40,7 +40,10 @@
     </div>
 
     <!-- Buttons to submit -->
-    <button :disabled="disableSearch" @click="searchCriteriaInputted">Search</button> <!-- Bind to disableSearch -->
+    <!-- Please remove this and uncomment the other button once you finish testing -->
+    <button :disabled="disableSearch" @click="searchCriteriaInputted">Search</button>
+
+    <!-- <button :disabled="disableSearch" @click="search">Search</button> --> <!-- Bind to disableSearch -->
     <button :disabled="!enableBack" @click="goBack">Back</button>
   </div>
 
@@ -63,21 +66,27 @@
         <td>{{ team.teamName }}</td>
 
         <!-- Loops through the list of students in team and displays their name  -->
+        <!-- Display students in a table cell -->
         <td>
-          <ul>
-            <li v-for="student in team.students" :key="student.id">{{ student.name }}</li>
-          </ul>
+          <table>
+            <tr v-for="student in team.students" :key="student.id">
+              <td>{{ student.name }}</td>
+            </tr>
+          </table>
         </td>
 
         <!-- Loops through the list of instructors in team and displays their name  -->
+        <!-- Display instructors in a table cell -->
         <td>
-          <ul>
-            <li v-for="instructor in team.instructors" :key="instructor.id">{{ instructor.name }}</li>
-          </ul>
+          <table>
+            <tr v-for="instructor in team.instructors" :key="instructor.id">
+              <td>{{ instructor.name }}</td>
+            </tr>
+          </table>
         </td>
 
         <td>
-          <NuxtLink :to="{ path: '/team/viewTeam/'}">
+          <NuxtLink :to="{ path: '/team/view/[teamName]', query: { teamName: team.teamName } }">
             <button>View This Team</button>
           </NuxtLink>
         </td>
@@ -89,6 +98,7 @@
     <div v-if="Object.keys(foundTeams).length === 0">
       <p>No matching teams found.</p>
     </div>
+
   </div>
 </template>
 
@@ -116,8 +126,10 @@ export default {
         instructor: '',
       },
 
+      //Uncomment this once you uncomment the 'search' method
       //foundTeams: {},
 
+      // /*
       //For testing purposes, please remove once you fix your front end to look how you want
       foundTeams: {
         team1: {
@@ -142,7 +154,7 @@ export default {
           instructors: [{ id: 1, name: 'Instructor X' }, { id: 2, name: 'Instructor Y' }],
         },
       },
-      // ^^^^^ CODE ABOVE IS FOR TESTING ^^^^^
+      // */
 
       pageable: {
         page: 0,
@@ -179,10 +191,13 @@ export default {
       }
     },
 
+    //Please remove this code once you uncomment the 'search' method
     searchCriteriaInputted: function() {
       this.showSearchModule = false;
     },
 
+    /*
+    //Please uncomment this section of code once you are read to test with the backend
     search: async function () {
       const payload = {
         searchCriteria: this.searchCriteria, // Correct payload object
@@ -191,11 +206,13 @@ export default {
 
       try {
         const response = await axios.get('http://localhost:8080/peerEval/teams/search', { params: payload }); // Use params for GET requests
-        this.foundTeams = response.data; //Update foundSections with response data
+        this.foundTeams = response.data; //Update foundTeams with response data
+        this.showSearchModule = false;
       } catch (error) {
         console.error('Error searching teams:', error);
       }
     },
+     */
 
   },
 
@@ -236,8 +253,10 @@ p {
 }
 
 table {
+  margin: 0 auto; /* Center the table horizontally */
   text-align: center;
   border-collapse: collapse;
+  width: 80%; /* Adjust the width of the table as needed */
 }
 
 th, td {
