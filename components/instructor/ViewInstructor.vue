@@ -6,6 +6,7 @@
         <th>Name</th>
         <th>Teams</th>
         <th>Status</th>
+        <th></th>
       </thead>
 
       <tbody>
@@ -13,6 +14,15 @@
           <td>{{this.instructor.name}}</td>
           <td>{{this.instructor.teamName}}</td>
           <td>{{this.instructor.status}}</td>
+          <td>
+            <NuxtLink v-if="this.instructor.status == 'IS_DEACTIVATED'" :to="{path:'/instructor/view/changestatus', query:{id: this.instructor.instructorId, action : 'reactivate'}}">
+              <button>Reactivate this Instructor</button>
+            </NuxtLink>
+
+            <NuxtLink v-if="this.instructor.status == 'IS_ACTIVE'" :to="{path:'/instructor/view/changestatus', query:{id: this.instructor.instructorId, action : 'deactivate'}}">
+              <button>Deactivate this Instructor</button>
+            </NuxtLink>
+          </td>
         </tr>
       </tbody>
     </table>

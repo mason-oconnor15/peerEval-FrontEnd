@@ -61,7 +61,7 @@
     data(){
       return {
         showSearchOptions: true,
-        badCriteria: true,
+        badCriteria: false,
 
         searchCriteria:{
           name: '',
@@ -76,27 +76,7 @@
         },
 
         showResults: false,
-        searchResults: {
-          // flag: true,
-          // code: 200,
-          // message: 'Search Success',
-          // data: [
-          //   {
-          //     instructorId: '1',
-          //     name: 'alvie',
-          //     academicYear: 2024,
-          //     status: 'IS_ACTIVE',
-          //     teamNames: null,
-          //   },
-          //   {
-          //     instructorId: '2',
-          //     name: 'ana',
-          //     academicYear: 2024,
-          //     status: 'IS_ACTIVE',
-          //     teamNames: null,
-          //   }
-          // ]
-        }
+        searchResults: {},
       }
     },
 
@@ -104,8 +84,7 @@
     methods: {
       checkCriteria: function (){
         if(this.searchCriteria.name.length != 0
-        || this.searchCriteria.academicYear.length != 0
-        || this.searchCriteria.status.length != 0){
+        || this.searchCriteria.academicYear.length != 0){
           this.badCriteria = false;
         }
       },
