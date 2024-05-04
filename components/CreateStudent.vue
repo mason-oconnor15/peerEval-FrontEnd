@@ -54,12 +54,19 @@ export default {
   },
   methods: {
     // Methods for your component
-    submitStudent: /*async*/ function(){
-        /*const formData = new FormData();
-        formData.append("loan", JSON.stringify(loan));
-        const response = await axios.post('localhost:8080/peereval/student', formData,);*/
-        console.log("student submitted");
-        //restore to default state
+    submitStudent: async function(){
+        try{
+        const response = await axios.post('http://localhost:8080/peerEval/student/', this.student, {
+          headers: {
+              'Content-Type': 'application/json'
+          }
+        });
+        console.log("student submitted")
+        }
+        catch(error){
+          console.log("Failed to create student: "+ error)
+        }
+        
         this.student.firstName = '';
         this.student.lastName = '';
         this.student.middleInitial = '';
