@@ -40,11 +40,11 @@
     </div>
 
     <!-- Buttons to submit -->
-    <button :disabled="disableSearch">Search</button> <!-- Bind to disableSearch -->
+    <button :disabled="disableSearch" @click="searchCriteriaInputted">Search</button> <!-- Bind to disableSearch -->
     <button :disabled="!enableBack" @click="goBack">Back</button>
   </div>
 
-  <div class="searchResult-container" v-if="!showSearchModule">
+  <div class="search-container" v-if="!showSearchModule">
     <h2>Search Results</h2>
     <table>
       <thead>
@@ -53,6 +53,7 @@
           <th>Team Name</th>
           <th>Team Members (Students)</th>
           <th>Instructors</th>
+          <th>View Details</th>
         </tr>
       </thead>
 
@@ -73,6 +74,12 @@
           <ul>
             <li v-for="instructor in team.instructors" :key="instructor.id">{{ instructor.name }}</li>
           </ul>
+        </td>
+
+        <td>
+          <NuxtLink :to="{ path: '/team/viewTeam/' 3}">
+            <button>View This Team</button>
+          </NuxtLink>
         </td>
       </tr>
       </tbody>
@@ -109,7 +116,33 @@ export default {
         instructor: '',
       },
 
-      foundTeams: {},
+      //foundTeams: {},
+
+      //For testing purposes, please remove once you fix your front end to look how you want
+      foundTeams: {
+        team1: {
+          teamName: 'Team 1',
+          sectionName: 'Section A',
+          academicYear: '2024',
+          students: [{ id: 1, name: 'Student A' }, { id: 2, name: 'Student B' }, { id: 3, name: 'Student C' }],
+          instructors: [{ id: 1, name: 'Instructor X' }, { id: 2, name: 'Instructor Y' }],
+        },
+        team2: {
+          teamName: 'Team 2',
+          sectionName: 'Section B',
+          academicYear: '2024',
+          students: [{ id: 1, name: 'Student A' }, { id: 2, name: 'Student B' }, { id: 3, name: 'Student C' }],
+          instructors: [{ id: 1, name: 'Instructor X' }, { id: 2, name: 'Instructor Y' }],
+        },
+        team3: {
+          teamName: 'Team 3',
+          sectionName: 'Section C',
+          academicYear: '2024',
+          students: [{ id: 1, name: 'Student A' }, { id: 2, name: 'Student B' }, { id: 3, name: 'Student C' }],
+          instructors: [{ id: 1, name: 'Instructor X' }, { id: 2, name: 'Instructor Y' }],
+        },
+      },
+      // ^^^^^ CODE ABOVE IS FOR TESTING ^^^^^
 
       pageable: {
         page: 0,
@@ -146,6 +179,10 @@ export default {
       }
     },
 
+    searchCriteriaInputted: function() {
+      this.showSearchModule = false;
+    },
+
     search: async function () {
       const payload = {
         searchCriteria: this.searchCriteria, // Correct payload object
@@ -159,6 +196,7 @@ export default {
         console.error('Error searching teams:', error);
       }
     },
+
   },
 
   computed: {
@@ -195,5 +233,15 @@ p {
 
 .editInstructions {
   color: blue;
+}
+
+table {
+  text-align: center;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 10px;
 }
 </style>
