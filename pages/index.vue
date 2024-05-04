@@ -1,5 +1,6 @@
 <script setup>
     
+import War from "~/pages/instructor/war.vue";
 </script>
 <template>
     <div class="container">
@@ -18,6 +19,9 @@
       <NuxtLink :to="{ path: '/instructor/instracc' }">
         <button>Setup Instructor account</button>
       </NuxtLink>
+      <NuxtLink :to="{ path: '/instructor/war' }">
+        <button>Generate War</button>
+      </NuxtLink>
 
       <!-- Ana's stuff -->
       <NuxtLink :to="{ path: '/team/searchTeam' }">
@@ -26,6 +30,7 @@
       <NuxtLink :to="{ path: '/team/createTeam' }">
         <button>Create Team</button>
       </NuxtLink>
+
 
       <NuxtLink :to="{ path: '/section/create/createSectionsPage' }">
         <button>Create Section</button>
