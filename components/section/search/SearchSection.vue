@@ -12,6 +12,7 @@
         </div>
         
         <button :disabled="disableSearch">Search</button> <!-- Bind to disableSearch -->
+        <button :disabled="disableEdit">Edit</button>
         <button :disabled="!enableBack" @click="goBack">Back</button>
 
     </div>
@@ -38,11 +39,20 @@ export default {
             enableBack: true,
             showSearchModule: true,
             disableSearch: true,
+            disableEdit: true,
             searchCriteria: {
                 sectionName: '',
                 academicYear: ''
             },
-            foundSections: {},
+            foundSection: {
+                sectionName: '',
+                academicYear: '',
+                firstAndLastDate: '',
+                rubricUsedName: ''
+            },
+            foundSections: {
+                foundSection
+            },
             pageable: {
                 page: 0,
                 size: 10,
@@ -64,9 +74,11 @@ export default {
             // Assuming `this.academicYear` holds the input value
             if (numberRegex.test(this.searchCriteria.academicYear)) {
                 this.disableSearch = false; // Input contains only numbers
+                this.disableEdit = false;
                 this.academicYearErrorMessage = ''; // Clear any existing error message
             } else {
                 this.disableSearch = true; // Input contains non-numeric characters
+                this.disableEdit = true;
                 this.academicYearErrorMessage = 'Please input only numbers.'; // Display error message
             }
         },
