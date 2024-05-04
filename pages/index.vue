@@ -6,6 +6,9 @@
         <NuxtLink :to="{ path: '/student/create' }">
             <button>create student</button>
         </NuxtLink>
+      <NuxtLink :to="{ path: '/student/peereval/submitpeereveal' }">
+        <button>Submit Peer Evaluation Form</button>
+      </NuxtLink>
         <NuxtLink :to="{ path: '/student/search' }">
             <button>find student</button>
         </NuxtLink>
@@ -29,6 +32,18 @@
       </NuxtLink>
       <NuxtLink :to="{ path: '/section/search/searchSectionsPage' }">
         <button>Find a Section</button>
+      </NuxtLink>
+      <NuxtLink :to="{ path: '/rubric/create/createRubricPage' }">
+        <button>Create a Rubric</button>
+      </NuxtLink>
+
+
+      <NuxtLink :to="{ path: '/instructor/invite' }">
+        <button>Invite instructors</button>
+      </NuxtLink>
+
+      <NuxtLink :to="{ path: '/instructor/search' }">
+        <button>Search For Instructors</button>
       </NuxtLink>
     </div>
 </template>

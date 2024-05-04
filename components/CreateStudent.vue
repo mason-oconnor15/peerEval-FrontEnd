@@ -88,7 +88,7 @@ export default {
   },
   // Lifecycle hooks
   created() {
-    console.log('Component is created!');
+    console.log('Component is created!');git
   },
   mounted() {
     console.log('Component is mounted on the DOM.');
