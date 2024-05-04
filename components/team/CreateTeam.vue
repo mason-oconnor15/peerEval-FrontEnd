@@ -36,6 +36,9 @@ export default {
     //Computed properties here
   },
 
+  /*
+  * I should have a method that checks if there is already a team with the given name
+  */
   methods: {
     submitNewTeam: function() {
       console.log("New team submitted (created).");
