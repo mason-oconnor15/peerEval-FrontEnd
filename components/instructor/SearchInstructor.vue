@@ -38,13 +38,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="instructor in this.searchResults.data" :key="instructor.id">
+        <tr v-for="instructor in this.searchResults.data" :key="instructor.instructorId">
           <td>{{instructor.name}}</td>
           <td>{{instructor.academicYear}}</td>
           <td>{{instructor.teamNames}}</td>
           <td>{{instructor.status}}</td>
           <td>
-            <NuxtLink :to="{ path: '/instructor/view/[instructorId]' }">
+            <NuxtLink :to="{ path: '/instructor/view/[instructorId]', query: { instructorId: instructor.instructorId } }">
               <button>View This Instructor</button>
             </NuxtLink>
           </td>
