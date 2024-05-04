@@ -77,7 +77,7 @@
         </td>
 
         <td>
-          <NuxtLink :to="{ path: '/team/viewTeam/' 3}">
+          <NuxtLink :to="{ path: '/team/viewTeam/'}">
             <button>View This Team</button>
           </NuxtLink>
         </td>
