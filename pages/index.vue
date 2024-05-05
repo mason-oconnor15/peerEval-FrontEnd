@@ -49,6 +49,7 @@ import War from "~/pages/instructor/war.vue";
       </NuxtLink>
 
 
+<!--      hien-start-->
       <NuxtLink :to="{ path: '/instructor/invite' }">
         <button>Invite instructors</button>
       </NuxtLink>
@@ -56,6 +57,15 @@ import War from "~/pages/instructor/war.vue";
       <NuxtLink :to="{ path: '/instructor/search' }">
         <button>Search For Instructors</button>
       </NuxtLink>
+
+      <NuxtLink :to="{ path: '/student/viewaccount' }">
+        <button>Update a Student Account</button>
+      </NuxtLink>
+
+      <NuxtLink :to="{ path: '/war/viewtask' }">
+        <button>View WAR tasks</button>
+      </NuxtLink>
+<!--      hien-end-->
     </div>
 </template>
 <style>
