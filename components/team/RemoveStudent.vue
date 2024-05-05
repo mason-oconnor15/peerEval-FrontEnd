@@ -20,9 +20,6 @@ export default {
         await axios.put(`http://localhost:8080/peerEval/teams/${teamName}/remove/students/${studentId}`);
         //Backend updates the data and returns a success message
         console.log('Student removed successfully');
-
-        //Event to notify the parent component the student was removed
-        this.$emit('student-removed');
       } catch (error) {
         console.error('Error removing student:', error);
       }

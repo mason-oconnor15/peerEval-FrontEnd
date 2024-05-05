@@ -20,9 +20,6 @@ export default {
         await axios.put(`http://localhost:8080/peerEval/teams/${teamName}/remove/instructors/${instructorId}`);
         //Backend updates the data and returns a success message
         console.log('Instructor removed successfully');
-
-        //Event to notify the parent component (ViewTeam.vue) that the instructor was removed
-        this.$emit('instructor-removed');
       } catch (error) {
         console.error('Error removing instructor:', error);
       }
