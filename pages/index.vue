@@ -25,6 +25,9 @@ import War from "~/pages/instructor/war.vue";
       <NuxtLink :to="{ path: '/instructor/peer' }">
         <button>Instructor -Generate Peer Evaluation</button>
       </NuxtLink>
+      <NuxtLink :to="{ path: '/student/peereval/viewpe' }">
+        <button>Student-View Peer Eval</button>
+      </NuxtLink>
 
       <!-- Ana's stuff -->
       <NuxtLink :to="{ path: '/team/searchTeam' }">
