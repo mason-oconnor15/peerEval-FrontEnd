@@ -34,6 +34,7 @@
   export default {
     data(){
       return{
+        baseUrl: "http://localhost:8080/peerEval",
         instructor: {
           instructorId: '',
           name: '',
@@ -56,7 +57,7 @@
 
       fetchInstructorData(){
         const instructorId = this.getInstructorId();
-        axios.get("http://localhost:8080/peereval/instructors/"+instructorId)
+        axios.get("http://localhost:8080/peerEval/instructors/" + instructorId)
             .then(response => {
               this.instructor = response.data.data;
             })

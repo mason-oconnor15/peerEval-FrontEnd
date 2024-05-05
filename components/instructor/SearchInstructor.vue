@@ -60,6 +60,7 @@
   export default {
     data(){
       return {
+        baseUrl: "http://localhost:8080/peerEval",
         showSearchOptions: true,
         badCriteria: false,
 
@@ -90,7 +91,7 @@
       },
 
       searchWithCriteria: function(){
-        axios.post("http://localhost:8080/peereval/instructors/search", this.searchCriteria, this.paging)
+        axios.post(this.baseUrl + "/instructors/search", this.searchCriteria, this.paging)
             .then((response) => {
               console.log(response.data.data.content);
               this.searchResults = response.data.data.content;
