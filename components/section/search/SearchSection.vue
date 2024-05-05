@@ -11,7 +11,8 @@
             <error-message :message="academicYearErrorMessage" v-if="academicYearErrorMessage"></error-message> <!-- Display error message if academicYearErrorMessage exists -->
         </div>
         
-        <button :disabled="disableSearch">Search</button> <!-- Bind to disableSearch -->
+
+        <button :disabled="disableSearch" @click="search">Search</button> <!-- Bind to disableSearch -->
         <button :disabled="!enableBack" @click="goBack">Back</button>
 
     </div>
