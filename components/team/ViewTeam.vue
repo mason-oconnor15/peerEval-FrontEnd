@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <table>
-
       <thead>
       <tr>
         <th>Team Name</th>
@@ -33,10 +32,19 @@
               <th>Student Name</th>
               <th>Remove Student</th>
             </tr>
+
             <tr v-for="student in team.students" :key="student.id">
               <td>{{ student.name }}</td>
-              <td><button>Remove This Student</button></td>
+              <td>
+                <!-- Include RemoveStudent component for each student -->
+                <remove-student
+                    :teamName="team.teamName"
+                    :studentId="student.id"
+                    @student-removed="handleStudentRemoved"
+                ></remove-student>
+              </td>
             </tr>
+
           </table>
         </td>
 
@@ -49,7 +57,14 @@
             </tr>
             <tr v-for="instructor in team.instructors" :key="instructor.id">
               <td>{{ instructor.name }}</td>
-              <td><button>Remove This Instructor</button></td>
+              <td>
+                <!-- Include RemoveInstructor component for each instructor -->
+                <remove-instructor
+                    :teamName="team.teamName"
+                    :instructorId="instructor.id"
+                    @instructor-removed="handleInstructorRemoved"
+                ></remove-instructor>
+              </td>
             </tr>
           </table>
         </td>
@@ -67,8 +82,15 @@
 
 <script>
 import axios from "axios";
+import RemoveStudent from "./RemoveStudent.vue";
+import RemoveInstructor from "./RemoveInstructor.vue";
 
 export default {
+  components: {
+    RemoveStudent,
+    RemoveInstructor,
+  },
+
   data() {
     return {
       team: {

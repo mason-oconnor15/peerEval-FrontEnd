@@ -1,9 +1,7 @@
 <template>
   <!--
-  In simpler terms, v-if="showSearchModule" controls whether the search
-  container (and everything inside it) should be shown or hidden based
-  on the value of showSearchModule. Because showSearchModule = true, that
-  means we can see whats in the search-container
+  Because showSearchModule = true, that means
+  we can see whats in the search-container.
   -->
   <div class="search-container" v-if="showSearchModule">
     <h2>Search For Teams</h2>
@@ -51,13 +49,13 @@
     <h2>Search Results</h2>
     <table>
       <thead>
-        <!-- These are the names of columns in the table -->
-        <tr>
-          <th>Team Name</th>
-          <th>Team Members (Students)</th>
-          <th>Instructors</th>
-          <th>View Details</th>
-        </tr>
+      <!-- These are the names of columns in the table -->
+      <tr>
+        <th>Team Name</th>
+        <th>Team Members (Students)</th>
+        <th>Instructors</th>
+        <th>View Details</th>
+      </tr>
       </thead>
 
       <tbody>
@@ -143,14 +141,14 @@ export default {
           teamName: 'Team 2',
           sectionName: 'Section B',
           academicYear: '2024',
-          students: [{ id: 1, name: 'Student A' }, { id: 2, name: 'Student B' }, { id: 3, name: 'Student C' }],
+          students: [{ id: 1, name: 'Student D' }, { id: 2, name: 'Student E' }, { id: 3, name: 'Student F' }],
           instructors: [{ id: 1, name: 'Instructor X' }, { id: 2, name: 'Instructor Y' }],
         },
         team3: {
           teamName: 'Team 3',
           sectionName: 'Section C',
           academicYear: '2024',
-          students: [{ id: 1, name: 'Student A' }, { id: 2, name: 'Student B' }, { id: 3, name: 'Student C' }],
+          students: [{ id: 1, name: 'Student H' }, { id: 2, name: 'Student I' }, { id: 3, name: 'Student J' }],
           instructors: [{ id: 1, name: 'Instructor X' }, { id: 2, name: 'Instructor Y' }],
         },
       },
