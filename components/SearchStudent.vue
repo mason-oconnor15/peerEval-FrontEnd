@@ -32,15 +32,19 @@
                 <th>Section Name</th>
                 <th>Academic Year</th>
                 <th>Team Name</th>
+                <th>View</th>
             </thead>
             <tbody>
-                <tr v-for="student in this.foundStudents">
-                    <td>{{ student.firstName }}</td>
-                    <td>{{ student.lastName }}</td>
-                    <td>{{ student.sectionName || "No Data" }} </td>
-                    <td>{{ student.academicYear || "No Data" }} </td>
-                    <td>{{ student.teamName || "No Data" }}</td>
-                </tr>
+                    <tr v-for="student in this.foundStudents" :key="student.id">
+                        <td>{{ student.firstName }}</td>
+                        <td>{{ student.lastName }}</td>
+                        <td>{{ student.sectionName || "No Data" }} </td>
+                        <td>{{ student.academicYear || "No Data" }} </td>
+                        <td>{{ student.teamName || "No Data" }}</td>
+                        <NuxtLink :to="{ path: `/student/view/${student.id}` }">
+                            <button>View This Student</button>
+                        </NuxtLink>
+                    </tr>
             </tbody>
         </table>
     </div>
@@ -92,26 +96,15 @@ export default{
             this.validateYear();
         },
         search: async function(){
-            try {
-                const response = await axios.post(`http://localhost:8080/peerEval/student/search`, this.searchCriteria,this.pageable, {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-                this.foundStudents = response.data.content;
-                if(this.foundStudents === undefined){
-                    alert("No students found matching criteria.")
-                }
-                else{
-                    this.showSearchModule = false;
-                }
-                console.log("Results:");
-                console.log(this.foundStudents);
-            }
-            catch (error) {
-                console.log("Failed to search for students: " + error);
-                this.showSearchModule = true;
-            }
+            axios.post("http://localhost:8080/peerEval/student/search", this.searchCriteria, this.paging)
+            .then((response) => {
+              console.log(response.data.data.content);
+              this.foundStudents = response.data.data.content;
+              this.showSearchModule = false;
+            })
+            .catch(error => {
+              console.log(error);
+            })
         }
     },
     computed:{

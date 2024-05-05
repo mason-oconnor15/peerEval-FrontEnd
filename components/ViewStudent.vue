@@ -8,14 +8,18 @@
             <th>Team</th>
             <th>Peer Evaluations</th>
             <th>WARs</th>
+            <th>Delete Student</th>
         </thead>
         <tbody>
-            <tr :v-model="this.student.firstName"></tr>
-            <tr :v-model="this.student.lastName"></tr>
-            <tr :v-model="this.student.academicYear"></tr>
-            <tr :v-model="this.student.teamName"></tr>
-            <tr :v-model="this.student.peerEvals"></tr>
-            <tr :v-model="this.student.wars"></tr>
+            <tr>
+              <td>{{ this.student.firstName }}</td>
+              <td>{{ this.student.lastName }}</td>
+              <td>{{ this.student.academicYear }}</td>
+              <td>{{ this.student.teamName || "No Team"}}</td>
+              <td>{{ this.student.numberOfPeerEvals || 0 }}</td>
+              <td>{{ this.student.numberOfWars }}</td>
+              <td> <button @click="deleteStudent(student.id)">Delete</button> </td>
+            </tr>
         </tbody>
       </table>
     </div>
@@ -35,8 +39,24 @@
     },
     methods: {
       // Methods for your component
-      fetchStudent: async function(){
-        axios.get("localhost:8080/student/");
+      fetchStudent: async function(studentId){
+        try{
+          const response = await axios.get(`http://localhost:8080/peerEval/student/${studentId}`);
+          this.student= response.data.data;
+          console.log(response.data);
+          console.log(this.student);
+        }
+        catch(error){
+          alert("Error fetching student: " + error);
+        }
+      },
+      deleteStudent: function(studentId){
+        try{
+          const response = axios.delete(`localhost:8080/student/${studentId}`);
+        }
+        catch(error){
+          alert("Error deleting student: " + error);
+        }
       }
     },
     watch: {
@@ -47,6 +67,8 @@
       console.log('Component is created!');
     },
     mounted() {
+      const studentId= this.$route.params.studentId;
+      this.fetchStudent(studentId);
       console.log('Component is mounted on the DOM.');
     },
     // You can add more lifecycle hooks here like updated, destroyed, etc.
@@ -66,5 +88,14 @@
   }
   p{
       margin: 2px;
+  }
+  table {
+    border-collapse: collapse; /* This ensures that adjacent cells share borders */
+    
+  }
+  td, th {
+    border: 1px solid black; /* Add a solid black border to all table cells */
+    justify-items: center;
+    align-items: center;
   }
   </style>
