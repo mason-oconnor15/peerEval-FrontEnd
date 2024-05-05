@@ -22,6 +22,7 @@
   export default {
     data(){
       return {
+        baseUrl: "http://localhost:8080/peerEval",
         showDeactivate: this.showDeactivateStatus(),
         instructorId: this.fetchInstructorId(),
         deactivateBody: {
@@ -59,7 +60,7 @@
       },
 
       sendDeactivateRequest: async function(){
-        axios.put("http://localhost:8080/peereval/instructors/deactivate/" + this.instructorId, this.deactivateBody)
+        axios.put(this.baseUrl + "/instructors/deactivate/" + this.instructorId, this.deactivateBody)
             .then((response) => {
               console.log(response);
               alert(response.data.message);
@@ -81,7 +82,7 @@
       },
 
       sendReactivateRequest: async function(){
-        axios.put("http://localhost:8080/peereval/instructors/reactivate/" + this.instructorId)
+        axios.put(this.baseUrl + "/instructors/reactivate/" + this.instructorId)
             .then((response) => {
               alert(response.data.message);
               console.log(response);
